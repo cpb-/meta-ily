@@ -1,0 +1,16 @@
+#! /bin/sh
+### BEGIN INIT INFO
+# Provides:             custom-app
+# Required-Start:
+# Required-Stop:
+# Default-Start:        2 3 4 5
+# Default-Stop:         1
+# Short-Description:    Run a custom application
+### END INIT INFO
+#
+
+if [ "$1" = "start" ]
+then
+        /usr/bin/run-custom-app
+        exit 0
+fi
