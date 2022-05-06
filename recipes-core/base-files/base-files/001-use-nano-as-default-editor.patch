@@ -1,0 +1,12 @@
+diff -ruN base-files/profile base-files-modified/profile
+--- base-files/profile	2022-05-07 06:56:33.834970616 +0200
++++ base-files-modified/profile	2022-05-07 06:56:56.394785743 +0200
+@@ -60,7 +60,7 @@
+ 	fi
+ fi
+ 
+-EDITOR="vi"			# needed for packages like cron, git-commit
++EDITOR="nano"			# needed for packages like cron, git-commit
+ export PATH PS1 OPIEDIR QPEDIR QTDIR EDITOR TERM
+ 
+ umask 022
