@@ -1,0 +1,151 @@
+{
+	"sources" : [
+		{ "url": "git://git.yoctoproject.org/poky", "branch": "kirkstone", "rev": "kirkstone-4.0" },
+		{ "url": "git://git.openembedded.org/meta-openembedded", "branch": "kirkstone", "rev": "bb2b5b31" }
+	],
+
+	"layers" : [
+                "poky/meta",
+                "poky/meta-poky",
+                "poky/meta-yocto-bsp"
+        ],
+
+	"builds" : {
+
+		"chapter-1" : {
+
+			"notes" : [
+				"Simple build with default configuration and empty root password."
+			],
+
+			"target": "core-image-base",
+
+                        "local.conf": [
+				"MACHINE = 'qemuarm'                     ",
+				"IMAGE_FEATURES += 'empty-root-password' "
+			]
+		},
+
+		"chapter-2-1" : {
+
+			"notes" : [
+				"New password for `root` and new user `guest`."
+			],
+
+			"target": "chapter-2-image-1",
+
+			"layers" : [
+				"meta-ily"
+		        ],
+
+                        "local.conf": [
+				"MACHINE = 'qemuarm'                      "
+			]
+		},
+
+		"chapter-2-2" : {
+
+			"notes" : [
+				"Adding some packages from Open Embedded Core."
+			],
+
+			"target": "chapter-2-image-2",
+
+			"layers" : [
+				"meta-ily"
+		        ],
+
+                        "local.conf": [
+				"MACHINE = 'qemuarm'                      "
+			]
+
+		},
+
+		"chapter-2-3" : {
+
+			"notes" : [
+				"Adding some packages from meta-openembedded."
+			],
+
+			"target": "chapter-2-image-3",
+
+			"layers" : [
+				"meta-ily",
+				"meta-openembedded/meta-oe",
+				"meta-openembedded/meta-webserver"
+		        ],
+
+                        "local.conf": [
+				"MACHINE = 'qemuarm'                      "
+			]
+
+		},
+
+		"chapter-2-4" : {
+
+			"notes" : [
+				"Read-only root filesystem."
+			],
+
+			"target": "chapter-2-image-2",
+
+			"layers" : [
+				"meta-ily",
+				"meta-openembedded/meta-oe",
+				"meta-openembedded/meta-webserver"
+		        ],
+
+                        "local.conf": [
+				"MACHINE = 'qemuarm'                      ",
+				"SERIAL_CONSOLES_CHECK:forcevariable = '' "
+			]
+
+		},
+
+		"chapter-3" : {
+
+			"notes" : [
+				"Choose kernel type and version."
+			],
+
+			"target": "chapter-3-image",
+
+			"layers" : [
+				"meta-ily",
+				"meta-openembedded/meta-oe",
+				"meta-openembedded/meta-webserver"
+		        ],
+
+                        "local.conf": [
+				"MACHINE = 'qemuarm'                      ",
+				"SERIAL_CONSOLES_CHECK:forcevariable = '' ",
+				"PREFERRED_PROVIDER_virtual/kernel = 'linux-yocto-rt' ",
+				"PREFERRED_VERSION_linux-yocto-rt  = '5.15%'          "
+			]
+
+		},
+
+		"chapter-4" : {
+
+			"notes" : [
+				"Custom scripts and application."
+			],
+
+			"target": "chapter-4-image",
+
+			"layers" : [
+				"meta-ily",
+				"meta-openembedded/meta-oe",
+				"meta-openembedded/meta-webserver"
+		        ],
+
+                        "local.conf": [
+				"MACHINE = 'qemuarm'                      ",
+				"SERIAL_CONSOLES_CHECK:forcevariable = '' ",
+				"PREFERRED_PROVIDER_virtual/kernel = 'linux-yocto-rt' ",
+				"PREFERRED_VERSION_linux-yocto-rt  = '5.15%'          "
+			]
+
+		}
+	}
+}
