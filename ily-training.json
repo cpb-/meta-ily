@@ -1,7 +1,8 @@
 {
 	"sources" : [
 		{ "url": "git://git.yoctoproject.org/poky", "branch": "kirkstone", "rev": "kirkstone-4.0" },
-		{ "url": "git://git.openembedded.org/meta-openembedded", "branch": "kirkstone", "rev": "bb2b5b31" }
+		{ "url": "git://git.openembedded.org/meta-openembedded", "branch": "kirkstone", "rev": "bb2b5b31" },
+		{ "url": "git://git.yoctoproject.org/meta-raspberrypi", "branch": "kirkstone" }
 	],
 
 	"layers" : [
@@ -12,7 +13,7 @@
 
 	"builds" : {
 
-		"chapter-1" : {
+		"chapter-1-1" : {
 
 			"notes" : [
 				"Simple build with default configuration and empty root password."
@@ -22,6 +23,25 @@
 
                         "local.conf": [
 				"MACHINE = 'qemuarm'                     ",
+				"IMAGE_FEATURES += 'empty-root-password' "
+			]
+		},
+
+		"chapter-1-1" : {
+
+			"notes" : [
+				"Simple build for Raspberry Pi"
+			],
+
+			"layers" : [
+				"meta-raspberrypi"
+		        ],
+
+			"target": "core-image-base",
+
+                        "local.conf": [
+				"MACHINE = 'raspberrypi4'                ",
+				"ENABLE_UART = '1'                       ",
 				"IMAGE_FEATURES += 'empty-root-password' "
 			]
 		},
